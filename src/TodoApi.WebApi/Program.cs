@@ -27,6 +27,7 @@ namespace TodoApi.WebApi
         ///     Initializes a new instance of the <see cref="Microsoft.Extensions.Hosting.HostBuilder"/> class with pre-configured defaults.
         /// </summary>
         /// <param name="args">Command line arguments.</param>
+        /// <returns>The <see cref="Microsoft.Extensions.Hosting.IHostBuilder"/> so that additional calls can be chained.</returns>
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args: args)
                 .ConfigureWebHostDefaults(configure: webBuilder =>
