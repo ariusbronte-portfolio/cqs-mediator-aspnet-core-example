@@ -23,7 +23,7 @@ namespace TodoApi.WebApi
         /// </param>
         public Startup(IConfiguration configuration)
         {
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _configuration = configuration ?? throw new ArgumentNullException(paramName: nameof(configuration));
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace TodoApi.WebApi
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(configure: endpoints =>
             {
                 endpoints.MapControllers();
             });

@@ -20,7 +20,7 @@ namespace TodoApi.WebApi
         /// <param name="args">Command line arguments.</param>
         public static async Task Main(string[] args)
         {
-            await CreateHostBuilder(args).Build().RunAsync();
+            await CreateHostBuilder(args: args).Build().RunAsync();
         }
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace TodoApi.WebApi
         /// </summary>
         /// <param name="args">Command line arguments.</param>
         private static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+            Host.CreateDefaultBuilder(args: args)
+                .ConfigureWebHostDefaults(configure: webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
