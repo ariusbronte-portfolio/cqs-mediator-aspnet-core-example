@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TodoApi.Abstractions\TodoApi.Abstractions.csproj" />
+    <ProjectReference Include="..\TodoApi.BusinessLogic\TodoApi.BusinessLogic.csproj" />
+    <ProjectReference Include="..\TodoApi.DataAccess\TodoApi.DataAccess.csproj" />
+    <ProjectReference Include="..\TodoApi.Domain\TodoApi.Domain.csproj" />
+    <ProjectReference Include="..\TodoApi.Implementations\TodoApi.Implementations.csproj" />
+  </ItemGroup>
+
+
+</Project>
