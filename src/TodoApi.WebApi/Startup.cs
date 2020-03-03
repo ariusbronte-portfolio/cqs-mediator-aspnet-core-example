@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TodoApi.WebApi.Extensions;
 
 namespace TodoApi.WebApi
 {
@@ -32,6 +33,9 @@ namespace TodoApi.WebApi
         /// <param name="services">Defines a contract for a collection of service descriptors.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // Register the Swagger generator
+            services.AddSwaggerGenerator();
+            
             services.AddControllers();
         }
 
@@ -49,6 +53,16 @@ namespace TodoApi.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
+                // Middleware to serve generated Swagger as a JSON endpoint.
+                app.UseSwagger();
+
+                // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+                // specifying the Swagger JSON endpoint.
+                app.UseSwaggerUI(setupAction: c =>
+                {
+                    c.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "TodoApiV1");
+                });
             }
 
             app.UseCors(configurePolicy: builder =>

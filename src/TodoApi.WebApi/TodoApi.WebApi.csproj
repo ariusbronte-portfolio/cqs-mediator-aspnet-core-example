@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +12,10 @@
     <ProjectReference Include="..\TodoApi.DataAccess\TodoApi.DataAccess.csproj" />
     <ProjectReference Include="..\TodoApi.Domain\TodoApi.Domain.csproj" />
     <ProjectReference Include="..\TodoApi.Implementations\TodoApi.Implementations.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
   </ItemGroup>
 
 
