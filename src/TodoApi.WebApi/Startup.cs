@@ -51,6 +51,13 @@ namespace TodoApi.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(configurePolicy: builder =>
+            {
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+                builder.AllowAnyOrigin();
+            });
+            
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
