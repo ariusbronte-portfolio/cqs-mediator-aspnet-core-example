@@ -9,13 +9,24 @@ using Microsoft.Extensions.Logging;
 
 namespace TodoApi.WebApi
 {
+    /// <summary>
+    ///     Entry point class of programme.
+    /// </summary>
     public class Program
     {
-        public static void Main(string[] args)
+        /// <summary>
+        ///     Entry method of programme.
+        /// </summary>
+        /// <param name="args">Command line arguments.</param>
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            await CreateHostBuilder(args).Build().RunAsync();
         }
 
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Microsoft.Extensions.Hosting.HostBuilder"/> class with pre-configured defaults.
+        /// </summary>
+        /// <param name="args">Command line arguments.</param>
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
