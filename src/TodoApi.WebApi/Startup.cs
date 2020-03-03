@@ -1,4 +1,5 @@
 using System;
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -16,15 +17,22 @@ namespace TodoApi.WebApi
         /// <inheritdoc cref="Microsoft.Extensions.Configuration.IConfiguration"/>
         private readonly IConfiguration _configuration;
 
+        /// <inheritdoc cref="Microsoft.AspNetCore.Hosting.IWebHostEnvironment"/>
+        private readonly IWebHostEnvironment _hostEnvironment;
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="TodoApi.WebApi.Startup"/> class.
         /// </summary>
         /// <param name="configuration">
         ///     Represents a set of key/value application configuration properties.
         /// </param>
-        public Startup(IConfiguration configuration)
+        /// <param name="hostEnvironment">
+        ///    Provides information about the web hosting environment an application is running in.
+        /// </param>
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostEnvironment)
         {
             _configuration = configuration ?? throw new ArgumentNullException(paramName: nameof(configuration));
+            _hostEnvironment = hostEnvironment ?? throw new ArgumentNullException(nameof(hostEnvironment));
         }
 
         /// <summary>
@@ -35,7 +43,7 @@ namespace TodoApi.WebApi
         {
             // Register the Swagger generator
             services.AddSwaggerGenerator();
-            
+            services.AddHellangProblemDetails(_hostEnvironment);
             services.AddControllers();
         }
 
@@ -72,6 +80,7 @@ namespace TodoApi.WebApi
                 builder.AllowAnyOrigin();
             });
             
+            app.UseProblemDetails();
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
