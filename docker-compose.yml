@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  kestrel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:2020
+    ports:
+      - 2020:2020
+    restart: always
+    networks:
+      - dev-kestrel
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1nyrywg4jt68vms8b1ottlyfa
+      - POSTGRES_DB=tWO5QUIiFAL72lzsdC64mKGTfvgg
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - dev-network
+volumes:
+  pgdata:
+    driver: local
+networks:
+  dev-network:
+    driver: bridge
+  dev-kestrel:
+    driver: bridge
+
+# docker-compose build
+# docker-compose up -d
+# docker-compose down
+
+# Browse to: http://localhost/swagger/index.html

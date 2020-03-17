@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  kestrel:
+    container_name: dev-kestrel
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+  postgres:
+    container_name: dev-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=qpCsu8s7ohMZ9s4fzi2EaCAq10sl
+      - POSTGRES_DB=uQCQH6D4IpjZIBfzmgmdFjgF1w43
+    volumes:
+      - pgdata:/var/lib/postgresql/dev-data
+
+# docker-compose -f docker-compose.yml -f docker-compose.override.yml build
+# docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+# docker-compose down
+
+# Browse to: http://localhost/swagger/index.html
