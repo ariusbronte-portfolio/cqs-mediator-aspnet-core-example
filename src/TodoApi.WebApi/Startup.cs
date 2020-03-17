@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TodoApi.DataAccess;
+using TodoApi.DataAccess.Extensions;
 using TodoApi.WebApi.Extensions;
 
 namespace TodoApi.WebApi
@@ -41,6 +43,11 @@ namespace TodoApi.WebApi
         /// <param name="services">Defines a contract for a collection of service descriptors.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // Register database
+            var connectionString = _configuration.GetConnectionString(name: "Default");
+            var migrationsAssembly = typeof(TodoApiDbContext).Assembly.FullName;
+            services.AddDbContext(connectionString, migrationsAssembly);
+            
             // Register the Swagger generator
             services.AddSwaggerGenerator();
             services.AddHellangProblemDetails(_hostEnvironment);
