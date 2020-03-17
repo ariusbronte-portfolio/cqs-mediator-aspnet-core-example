@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TodoApi.WebApi.Extensions;
 
 namespace TodoApi.WebApi
 {
@@ -32,6 +33,7 @@ namespace TodoApi.WebApi
             Host.CreateDefaultBuilder(args: args)
                 .ConfigureWebHostDefaults(configure: webBuilder =>
                 {
+                    webBuilder.ConfigureKestrelHost();
                     webBuilder.UseStartup<Startup>();
                 });
     }
