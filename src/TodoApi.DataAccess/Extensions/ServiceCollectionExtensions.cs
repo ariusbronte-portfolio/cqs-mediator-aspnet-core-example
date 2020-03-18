@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -54,7 +53,7 @@ namespace TodoApi.DataAccess.Extensions
             services.AddDbContext<TodoApiDbContext>(optionsAction: options =>
             {
                 options.UseLazyLoadingProxies();
-                options.UseSqlite(connectionString: connectionString, sqliteOptionsAction: builder =>
+                options.UseNpgsql(connectionString: connectionString, npgsqlOptionsAction: builder =>
                     builder.MigrationsAssembly(assemblyName: migrationsAssembly));
             });
 
