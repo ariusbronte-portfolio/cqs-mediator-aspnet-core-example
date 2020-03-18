@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using TodoApi.DataAccess.Configurations;
+using TodoApi.Domain.Entities;
 
 namespace TodoApi.DataAccess
 {
@@ -16,11 +18,15 @@ namespace TodoApi.DataAccess
         public TodoApiDbContext(DbContextOptions<TodoApiDbContext> options) : base(options: options)
         {
         }
+        
+        /// <exception cref="TodoApi.Domain.Entities.TodoItemEntity" />
+        public DbSet<TodoItemEntity> TodoItems { get; set; }
 
         /// <inheritdoc />
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(modelBuilder: builder);
+            builder.ApplyConfiguration(new TodoItemEntityConfiguration());
         }
         
         /// <inheritdoc />
