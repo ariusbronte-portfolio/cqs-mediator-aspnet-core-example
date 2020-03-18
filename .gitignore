@@ -255,6 +255,9 @@ ServiceFabricBackup/
 *.ldf
 *.ndf
 
+# Entity Framework
+Migrations/
+
 # Business Intelligence projects
 *.rdl.data
 *.bim.layout
