@@ -58,6 +58,7 @@ namespace TodoApi.WebApi
             services.AddSwaggerGenerator();
             services.AddHellangProblemDetails(_hostEnvironment);
             services.AddControllers();
+            services.AddControllers().AddFluentValidation();
         }
 
         /// <summary>
