@@ -1,7 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-  </PropertyGroup>
-
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\TodoApi.Abstractions\TodoApi.Abstractions.csproj" />
+        <ProjectReference Include="..\TodoApi.DataAccess\TodoApi.DataAccess.csproj" />
+        <ProjectReference Include="..\TodoApi.Implementations\TodoApi.Implementations.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MediatR" Version="8.0.0" />
+        <PackageReference Include="AutoMapper" Version="9.0.0" />
+    </ItemGroup>
 </Project>
