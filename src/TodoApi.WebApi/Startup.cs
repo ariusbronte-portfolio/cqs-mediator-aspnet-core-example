@@ -37,7 +37,7 @@ namespace TodoApi.WebApi
         public Startup(IConfiguration configuration, IWebHostEnvironment hostEnvironment)
         {
             _configuration = configuration ?? throw new ArgumentNullException(paramName: nameof(configuration));
-            _hostEnvironment = hostEnvironment ?? throw new ArgumentNullException(nameof(hostEnvironment));
+            _hostEnvironment = hostEnvironment ?? throw new ArgumentNullException(paramName: nameof(hostEnvironment));
         }
 
         /// <summary>
@@ -49,16 +49,14 @@ namespace TodoApi.WebApi
             // Register database
             var connectionString = _configuration.GetConnectionString(name: "Default");
             var migrationsAssembly = typeof(TodoApiDbContext).Assembly.FullName;
-            services.AddDbContext(connectionString, migrationsAssembly);
-            
+            services.AddDbContext(connectionString: connectionString, migrationsAssembly: migrationsAssembly);
 
             services.AddAutoMapper();
             services.AddMediatR(typeof(GetTodoItemsQuery));
 
             // Register the Swagger generator
             services.AddSwaggerGenerator();
-            services.AddHellangProblemDetails(_hostEnvironment);
-            services.AddControllers();
+            services.AddHellangProblemDetails(environment: _hostEnvironment);
             services.AddControllers().AddFluentValidation();
         }
 
@@ -76,7 +74,7 @@ namespace TodoApi.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                
+
                 // Middleware to serve generated Swagger as a JSON endpoint.
                 app.UseSwagger();
 
@@ -94,7 +92,6 @@ namespace TodoApi.WebApi
                 builder.AllowAnyMethod();
                 builder.AllowAnyOrigin();
             });
-            
 
             app.UseForwardedHeaders(options: new ForwardedHeadersOptions
             {

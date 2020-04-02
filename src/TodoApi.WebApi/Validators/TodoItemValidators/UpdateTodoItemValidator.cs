@@ -16,7 +16,7 @@ namespace TodoApi.WebApi.Validators.TodoItemValidators
             RuleFor(expression: x => x.Id)
                 .NotEmpty()
                 .GreaterThan(valueToCompare: 0);
-            
+
             RuleFor(expression: x => x.Title)
                 .NotEmpty()
                 .Length(min: 10, max: 256);

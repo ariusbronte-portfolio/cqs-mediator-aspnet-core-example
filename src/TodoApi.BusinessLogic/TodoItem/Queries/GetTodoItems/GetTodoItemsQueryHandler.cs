@@ -32,7 +32,7 @@ namespace TodoApi.BusinessLogic.TodoItem.Queries.GetTodoItems
             var entities = await _dbContext.TodoItems
                 .OrderBy(keySelector: x => x.Id)
                 .ToArrayAsync(cancellationToken: cancellationToken);
-            
+
             return _mapper.Map<IEnumerable<TodoItemDto>>(source: entities);
         }
     }

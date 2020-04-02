@@ -8,7 +8,7 @@ namespace TodoApi.DataAccess.Extensions
     /// <summary>
     ///     Extension methods for setting up services in an <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
     /// </summary>
-    [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
+    [SuppressMessage(category: "ReSharper", checkId: "UnusedMethodReturnValue.Global")]
     public static class ServiceCollectionExtensions
     {
         /// <summary>
@@ -43,13 +43,13 @@ namespace TodoApi.DataAccess.Extensions
             string connectionString,
             string migrationsAssembly)
         {
-            if (services == null) 
+            if (services == null)
                 throw new ArgumentNullException(paramName: nameof(services));
             if (string.IsNullOrWhiteSpace(value: connectionString))
                 throw new ArgumentException(message: "Value cannot be null or whitespace.", paramName: nameof(connectionString));
             if (string.IsNullOrWhiteSpace(value: migrationsAssembly))
                 throw new ArgumentException(message: "Value cannot be null or whitespace.", paramName: nameof(migrationsAssembly));
-            
+
             services.AddDbContext<TodoApiDbContext>(optionsAction: options =>
             {
                 options.UseLazyLoadingProxies();

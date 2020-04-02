@@ -5,6 +5,5 @@ namespace TodoApi.BusinessLogic.TodoItem.Commands.CreateTodoItem
 {
     public class CreateTodoItemCommand : CreateTodoItemDto, IRequest<TodoItemDto>
     {
-        
     }
 }

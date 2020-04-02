@@ -19,7 +19,7 @@ namespace TodoApi.WebApi.Extensions
     /// <summary>
     ///     Extension methods for setting up services in an <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
     /// </summary>
-    [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
+    [SuppressMessage(category: "ReSharper", checkId: "UnusedMethodReturnValue.Global")]
     public static class ServiceCollectionExtensions
     {
         /// <summary>
@@ -71,7 +71,7 @@ namespace TodoApi.WebApi.Extensions
                 options.IncludeExceptionDetails = ctx => environment.IsDevelopment();
 
                 // This will map NotImplementedException to the 404 Not Found status code.
-                options.Map<RecordNotFoundException>(mapping: ex => 
+                options.Map<RecordNotFoundException>(mapping: ex =>
                     new ExceptionProblemDetails(error: ex, statusCode: StatusCodes.Status404NotFound));
 
                 // This will map NotImplementedException to the 501 Not Implemented status code.
@@ -90,7 +90,7 @@ namespace TodoApi.WebApi.Extensions
 
             return services;
         }
-        
+
         /// <summary>
         ///     Scan classes and register the configuration, mapping, and extensions with the service collection
         /// </summary>

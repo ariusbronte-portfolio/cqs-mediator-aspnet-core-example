@@ -6,7 +6,7 @@ using TodoApi.Domain.Entities;
 namespace TodoApi.DataAccess
 {
     /// <inheritdoc />
-    [SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
+    [SuppressMessage(category: "ReSharper", checkId: "SuggestBaseTypeForParameter")]
     public sealed class TodoApiDbContext : DbContext
     {
         /// <inheritdoc />
@@ -18,7 +18,7 @@ namespace TodoApi.DataAccess
         public TodoApiDbContext(DbContextOptions<TodoApiDbContext> options) : base(options: options)
         {
         }
-        
+
         /// <exception cref="TodoApi.Domain.Entities.TodoItemEntity" />
         public DbSet<TodoItemEntity> TodoItems { get; set; }
 
@@ -26,9 +26,9 @@ namespace TodoApi.DataAccess
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(modelBuilder: builder);
-            builder.ApplyConfiguration(new TodoItemEntityConfiguration());
+            builder.ApplyConfiguration(configuration: new TodoItemEntityConfiguration());
         }
-        
+
         /// <inheritdoc />
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

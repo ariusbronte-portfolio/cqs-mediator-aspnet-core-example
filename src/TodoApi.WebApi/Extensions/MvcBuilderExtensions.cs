@@ -25,7 +25,7 @@ namespace TodoApi.WebApi.Extensions
         public static IMvcBuilder AddFluentValidation(this IMvcBuilder builder)
         {
             if (builder == null) throw new ArgumentNullException(paramName: nameof(builder));
-            
+
             builder.AddFluentValidation(configurationExpression: fv =>
             {
                 fv.ImplicitlyValidateChildProperties = false;

@@ -15,25 +15,25 @@ namespace TodoApi.Implementations.Exceptions
         }
 
         /// <inheritdoc />
-        public RecordNotFoundException(string message) : base(message)
+        public RecordNotFoundException(string message) : base(message: message)
         {
         }
-        
+
         /// <inheritdoc />
-        public RecordNotFoundException(string entity, object key) 
+        public RecordNotFoundException(string entity, object key)
         {
             Message = $"Entity '{entity}' does not matter with the '{key}' key.";
         }
 
         /// <inheritdoc />
-        public RecordNotFoundException(string message, Exception inner) : base(message, inner)
+        public RecordNotFoundException(string message, Exception inner) : base(message: message, innerException: inner)
         {
         }
 
         /// <inheritdoc />
         protected RecordNotFoundException(
             SerializationInfo info,
-            StreamingContext context) : base(info, context)
+            StreamingContext context) : base(info: info, context: context)
         {
         }
     }

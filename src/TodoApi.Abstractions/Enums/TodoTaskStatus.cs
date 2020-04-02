@@ -9,12 +9,12 @@
         ///     Task is opened
         /// </summary>
         Open,
-        
+
         /// <summary>
         ///     Task is deferred
         /// </summary>
         Deferred,
-        
+
         /// <summary>
         ///     Task is closed
         /// </summary>

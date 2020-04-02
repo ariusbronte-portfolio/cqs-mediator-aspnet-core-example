@@ -29,7 +29,7 @@ namespace TodoApi.BusinessLogic.TodoItem.Queries.GetTodoItem
         {
             cancellationToken.ThrowIfCancellationRequested();
             var id = request.Id;
-            
+
             var entity = await _dbContext.TodoItems.FindAsync(id);
 
             if (entity == null)

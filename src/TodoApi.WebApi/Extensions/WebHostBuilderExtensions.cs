@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 
@@ -7,6 +8,7 @@ namespace TodoApi.WebApi.Extensions
     /// <summary>
     ///     Extension methods for setting up services in an <see cref="TodoApi.WebApi.Extensions.WebHostBuilderExtensions" />.
     /// </summary>
+    [SuppressMessage(category: "ReSharper", checkId: "UnusedMethodReturnValue.Global")]
     public static class WebHostBuilderExtensions
     {
         /// <summary>
@@ -24,19 +26,16 @@ namespace TodoApi.WebApi.Extensions
         /// </returns>
         public static IWebHostBuilder ConfigureKestrelHost(this IWebHostBuilder hostBuilder)
         {
-            if (hostBuilder == null)
-            {
-                throw new ArgumentNullException(paramName: nameof(hostBuilder));
-            }
+            if (hostBuilder == null) throw new ArgumentNullException(paramName: nameof(hostBuilder));
 
             hostBuilder.ConfigureKestrel(options: serverOptions =>
             {
                 serverOptions.Limits.MaxConcurrentConnections = 100;
                 serverOptions.Limits.MaxConcurrentUpgradedConnections = 100;
                 serverOptions.Limits.MaxRequestBodySize = 10 * 1024;
-                serverOptions.Limits.MinRequestBodyDataRate = 
+                serverOptions.Limits.MinRequestBodyDataRate =
                     CreateMinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(value: 10));
-                serverOptions.Limits.MinResponseDataRate = 
+                serverOptions.Limits.MinResponseDataRate =
                     CreateMinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(value: 10));
                 serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(value: 2);
                 serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(value: 1);
@@ -44,7 +43,7 @@ namespace TodoApi.WebApi.Extensions
 
             return hostBuilder;
         }
-        
+
         /// <summary>
         ///     Creates a new instance of <see cref="Microsoft.AspNetCore.Server.Kestrel.Core.MinDataRate"/>.
         /// </summary>

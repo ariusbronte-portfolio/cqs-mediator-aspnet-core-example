@@ -50,7 +50,7 @@ namespace TodoApi.WebApi.Controllers
             cancellationToken.ThrowIfCancellationRequested();
             return Ok(value: await _mediator.Send(request: new GetTodoItemsQuery(), cancellationToken: cancellationToken));
         }
-        
+
         /// <summary>
         ///     Gets the task by id.
         /// </summary>
@@ -69,7 +69,7 @@ namespace TodoApi.WebApi.Controllers
             cancellationToken.ThrowIfCancellationRequested();
             return Ok(value: await _mediator.Send(request: new GetTodoItemQuery(id: id), cancellationToken: cancellationToken));
         }
-        
+
         /// <summary>
         ///     Creates a new task.
         /// </summary>
@@ -89,7 +89,7 @@ namespace TodoApi.WebApi.Controllers
             var response = await _mediator.Send(request: command, cancellationToken: cancellationToken);
             return CreatedAtAction(actionName: nameof(GetTodoItem), routeValues: new {id = response.Id}, value: response);
         }
-        
+
         /// <summary>
         ///     Updates the task.
         /// </summary>
@@ -111,7 +111,7 @@ namespace TodoApi.WebApi.Controllers
             await _mediator.Send(request: command, cancellationToken: cancellationToken);
             return NoContent();
         }
-        
+
         /// <summary>
         ///     Delete the task.
         /// </summary>

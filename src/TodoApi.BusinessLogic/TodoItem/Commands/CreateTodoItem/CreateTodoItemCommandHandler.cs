@@ -27,7 +27,7 @@ namespace TodoApi.BusinessLogic.TodoItem.Commands.CreateTodoItem
             cancellationToken.ThrowIfCancellationRequested();
             var title = request.Title;
             var status = request.Status;
-            
+
             var entity = new TodoItemEntity(title: title, status: status);
             await _dbContext.TodoItems.AddAsync(entity: entity, cancellationToken: cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken: cancellationToken);
