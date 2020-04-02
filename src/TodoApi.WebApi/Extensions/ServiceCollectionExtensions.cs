@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using TodoApi.Abstractions.Dto.TodoItemDtos;
 using TodoApi.Domain.Entities;
+using TodoApi.Implementations.Exceptions;
 
 namespace TodoApi.WebApi.Extensions
 {
@@ -68,6 +69,10 @@ namespace TodoApi.WebApi.Extensions
             {
                 // This is the default behavior; only include exception details in a development environment.
                 options.IncludeExceptionDetails = ctx => environment.IsDevelopment();
+
+                // This will map NotImplementedException to the 404 Not Found status code.
+                options.Map<RecordNotFoundException>(mapping: ex => 
+                    new ExceptionProblemDetails(error: ex, statusCode: StatusCodes.Status404NotFound));
 
                 // This will map NotImplementedException to the 501 Not Implemented status code.
                 options.Map<NotImplementedException>(mapping: ex =>
