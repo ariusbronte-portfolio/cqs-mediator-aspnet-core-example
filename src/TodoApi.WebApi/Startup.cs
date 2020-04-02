@@ -1,10 +1,12 @@
 using System;
 using Hellang.Middleware.ProblemDetails;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TodoApi.BusinessLogic.TodoItem.Queries.GetTodoItems;
 using TodoApi.DataAccess;
 using TodoApi.DataAccess.Extensions;
 using TodoApi.WebApi.Extensions;
@@ -48,6 +50,10 @@ namespace TodoApi.WebApi
             var migrationsAssembly = typeof(TodoApiDbContext).Assembly.FullName;
             services.AddDbContext(connectionString, migrationsAssembly);
             
+
+            services.AddAutoMapper();
+            services.AddMediatR(typeof(GetTodoItemsQuery));
+
             // Register the Swagger generator
             services.AddSwaggerGenerator();
             services.AddHellangProblemDetails(_hostEnvironment);

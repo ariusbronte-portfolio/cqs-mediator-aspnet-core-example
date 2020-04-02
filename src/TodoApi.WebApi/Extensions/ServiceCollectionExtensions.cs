@@ -3,12 +3,15 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using AutoMapper;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using TodoApi.Abstractions.Dto.TodoItemDtos;
+using TodoApi.Domain.Entities;
 
 namespace TodoApi.WebApi.Extensions
 {
@@ -79,6 +82,26 @@ namespace TodoApi.WebApi.Extensions
                 options.Map<Exception>(mapping: ex =>
                     new ExceptionProblemDetails(error: ex, statusCode: StatusCodes.Status500InternalServerError));
             });
+
+            return services;
+        }
+        
+        /// <summary>
+        ///     Scan classes and register the configuration, mapping, and extensions with the service collection
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection" /> to add services to.</param>
+        /// <exception cref="ArgumentNullException">
+        ///    Thrown if <see cref="IServiceCollection"/> is nullable
+        /// </exception>
+        /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
+        public static IServiceCollection AddAutoMapper(this IServiceCollection services)
+        {
+            if (services == null) throw new ArgumentNullException(paramName: nameof(services));
+
+            services.AddAutoMapper(configAction: cfg =>
+            {
+                cfg.CreateMap<TodoItemEntity, TodoItemDto>();
+            }, typeof(Startup));
 
             return services;
         }
