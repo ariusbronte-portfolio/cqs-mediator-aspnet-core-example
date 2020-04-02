@@ -3,6 +3,7 @@ using Hellang.Middleware.ProblemDetails;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -94,9 +95,16 @@ namespace TodoApi.WebApi
                 builder.AllowAnyOrigin();
             });
             
+
+            app.UseForwardedHeaders(options: new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app.UseProblemDetails();
-            app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseHsts();
+            app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(configure: endpoints =>
             {
