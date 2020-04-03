@@ -1,0 +1,12 @@
+2020-04-03 00:03:53.498 +00:00 [INF] Starting web host...
+2020-04-03 00:03:53.833 +00:00 [DBG] Hosting starting
+2020-04-03 00:03:53.905 +00:00 [DBG] Configure the HTTP request pipelines in development mode.
+2020-04-03 00:03:54.129 +00:00 [DBG] Failed to locate the development https certificate at 'null'.
+2020-04-03 00:03:54.207 +00:00 [DBG] Using development certificate: CN=localhost (Thumbprint: 5D337FC465391C12973F5462A4EC4B33B5C99375)
+2020-04-03 00:03:54.243 +00:00 [INF] Now listening on: https://localhost:2021
+2020-04-03 00:03:54.246 +00:00 [INF] Now listening on: http://localhost:2020
+2020-04-03 00:03:54.254 +00:00 [DBG] Loaded hosting startup assembly TodoApi.WebApi
+2020-04-03 00:03:54.256 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-04-03 00:03:54.257 +00:00 [INF] Hosting environment: Development
+2020-04-03 00:03:54.258 +00:00 [INF] Content root path: D:\portfolio\TodoApi\src\TodoApi.WebApi
+2020-04-03 00:03:54.259 +00:00 [DBG] Hosting started

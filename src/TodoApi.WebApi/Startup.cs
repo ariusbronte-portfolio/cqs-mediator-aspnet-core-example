@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using TodoApi.BusinessLogic.TodoItem.Queries.GetTodoItems;
 using TodoApi.DataAccess;
 using TodoApi.DataAccess.Extensions;
@@ -62,10 +64,14 @@ namespace TodoApi.WebApi
         /// <param name="env">
         ///     Provides information about the web hosting environment an application is running in.
         /// </param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        /// <param name="logger">
+        ///     Represents a type used to perform logging.
+        /// </param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
+                logger.LogDebug(message: "Configure the HTTP request pipelines in development mode.");
                 app.UseDeveloperExceptionPage();
 
                 // Middleware to serve generated Swagger as a JSON endpoint.
@@ -96,6 +102,11 @@ namespace TodoApi.WebApi
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
+            
+            // Write streamlined request completion events, instead of the more verbose ones from the framework.
+            // To use the default framework request logging instead, remove this line and set the "Microsoft"
+            // level in appsettings.json to "Information".
+            app.UseSerilogRequestLogging();
             app.UseEndpoints(configure: endpoints =>
             {
                 endpoints.MapControllers();
