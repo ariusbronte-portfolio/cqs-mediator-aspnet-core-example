@@ -22,22 +22,15 @@ namespace TodoApi.WebApi
         /// <inheritdoc cref="Microsoft.Extensions.Configuration.IConfiguration"/>
         private readonly IConfiguration _configuration;
 
-        /// <inheritdoc cref="Microsoft.AspNetCore.Hosting.IWebHostEnvironment"/>
-        private readonly IWebHostEnvironment _hostEnvironment;
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="TodoApi.WebApi.Startup"/> class.
         /// </summary>
         /// <param name="configuration">
         ///     Represents a set of key/value application configuration properties.
         /// </param>
-        /// <param name="hostEnvironment">
-        ///    Provides information about the web hosting environment an application is running in.
-        /// </param>
-        public Startup(IConfiguration configuration, IWebHostEnvironment hostEnvironment)
+        public Startup(IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(paramName: nameof(configuration));
-            _hostEnvironment = hostEnvironment ?? throw new ArgumentNullException(paramName: nameof(hostEnvironment));
         }
 
         /// <summary>
@@ -56,7 +49,7 @@ namespace TodoApi.WebApi
 
             // Register the Swagger generator
             services.AddSwaggerGenerator();
-            services.AddHellangProblemDetails(environment: _hostEnvironment);
+            services.AddHellangProblemDetails();
             services.AddControllers().AddFluentValidation();
         }
 

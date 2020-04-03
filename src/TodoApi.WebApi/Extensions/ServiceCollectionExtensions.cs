@@ -60,15 +60,14 @@ namespace TodoApi.WebApi.Extensions
         ///    The services must not be null.
         /// </exception>
         /// <returns>The <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection"/> so that additional calls can be chained.</returns>
-        public static IServiceCollection AddHellangProblemDetails(this IServiceCollection services, IWebHostEnvironment environment)
+        public static IServiceCollection AddHellangProblemDetails(this IServiceCollection services)
         {
             if (services == null) throw new ArgumentNullException(paramName: nameof(services));
-            if (environment == null) throw new ArgumentNullException(paramName: nameof(environment));
 
             services.AddProblemDetails(configure: options =>
             {
                 // This is the default behavior; only include exception details in a development environment.
-                options.IncludeExceptionDetails = ctx => environment.IsDevelopment();
+                options.IncludeExceptionDetails = ctx => Environment.IsDevelopment();
 
                 // This will map NotImplementedException to the 404 Not Found status code.
                 options.Map<RecordNotFoundException>(mapping: ex =>
