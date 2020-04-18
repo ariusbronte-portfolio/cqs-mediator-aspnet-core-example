@@ -26,7 +26,7 @@ namespace TodoApi.Tests.Unit.Extensions
             
             // Act
             var services = new ServiceCollection()
-                .AddDbContext(connectionString: connectionString, migrationsAssembly: migrationsAssembly);
+                .AddDbContext(connectionString, migrationsAssembly);
 
             var dbContext = services.BuildServiceProvider().GetService<TodoApiDbContext>();
             
@@ -34,7 +34,7 @@ namespace TodoApi.Tests.Unit.Extensions
             services.Should().NotBeEmpty();
             dbContext.Should().NotBeNull();
             
-            LogServices(services: services);
+            LogServices(services);
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace TodoApi.Tests.Unit.Extensions
             // Assert
             services.Should().NotBeEmpty();
             
-            LogServices(services: services);
+            LogServices(services);
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace TodoApi.Tests.Unit.Extensions
             // Assert
             services.Should().NotBeEmpty();
             
-            LogServices(services: services);
+            LogServices(services);
         }
 
         [Fact]
@@ -73,15 +73,15 @@ namespace TodoApi.Tests.Unit.Extensions
             // Assert
             services.Should().NotBeEmpty();
             
-            LogServices(services: services);
+            LogServices(services);
         }
         
         private void LogServices(IServiceCollection services)
         {
-            _testOutputHelper.WriteLine(message: $"Total Services Registered: {services.Count}");
+            _testOutputHelper.WriteLine($"Total Services Registered: {services.Count}");
             foreach (var service in services)
             {
-                _testOutputHelper.WriteLine(message: $"\n Service: {service.ServiceType.FullName}\n Lifetime: {service.Lifetime}\n Instance: {service.ImplementationType?.FullName}");
+                _testOutputHelper.WriteLine($"\n Service: {service.ServiceType.FullName}\n Lifetime: {service.Lifetime}\n Instance: {service.ImplementationType?.FullName}");
             }
         }
     }

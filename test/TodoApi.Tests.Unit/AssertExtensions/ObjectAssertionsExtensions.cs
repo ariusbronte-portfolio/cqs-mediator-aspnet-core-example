@@ -11,7 +11,7 @@ namespace TodoApi.Tests.Unit.AssertExtensions
     /// <summary>
     ///     Extension methods for <see cref="FluentAssertions.Primitives.ObjectAssertions"/>.
     /// </summary>
-    [SuppressMessage(category: "ReSharper", checkId: "UnusedMethodReturnValue.Global")]
+    [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
     public static class ObjectAssertionsExtensions
     {
         /// <summary>

@@ -16,13 +16,13 @@ namespace TodoApi.Tests.Unit.Validators
 
         public UpdateTodoItemValidatorTests(ValidatorFixture<UpdateTodoItemValidator> validator)
         {
-            _validator = validator?.Instance ?? throw new ArgumentNullException(paramName: nameof(validator));
+            _validator = validator?.Instance ?? throw new ArgumentNullException(nameof(validator));
         }
 
         [Fact]
         public void IsValidTests()
         {
-            _validator.TestValidate(objectToTest: new UpdateTodoItemDto
+            _validator.TestValidate(new UpdateTodoItemDto
             {
                 Id = 1, Title = "TodoItemName", Status = TodoTaskStatus.Open
             }).IsValid.Should().BeTrue();
@@ -42,11 +42,11 @@ namespace TodoApi.Tests.Unit.Validators
             };
 
             // Act
-            var result = _validator.TestValidate(objectToTest: dto);
+            var result = _validator.TestValidate(dto);
 
             // Assert
             result.IsValid.Should().BeFalse();
-            result.Errors.FirstOrDefault(predicate: x => x.ErrorMessage == message).Should().NotBeNull();
+            result.Errors.FirstOrDefault(x => x.ErrorMessage == message).Should().NotBeNull();
         }
 
         [Fact]
@@ -61,12 +61,12 @@ namespace TodoApi.Tests.Unit.Validators
             };
 
             // Act
-            var result = _validator.TestValidate(objectToTest: dto);
+            var result = _validator.TestValidate(dto);
 
             // Assert
             result.IsValid.Should().BeFalse();
-            result.Errors.Single().ErrorMessage.Should().Be(expected: "'Title' must not be empty.");
-            result.Errors.Should().HaveCount(expected: 1);
+            result.Errors.Single().ErrorMessage.Should().Be("'Title' must not be empty.");
+            result.Errors.Should().HaveCount(1);
         }
 
         [Theory]
@@ -78,17 +78,17 @@ namespace TodoApi.Tests.Unit.Validators
             var dto = new UpdateTodoItemDto
             {
                 Id = 1,
-                Title = new string(c: '*', count: length),
+                Title = new string('*', length),
                 Status = TodoTaskStatus.Open
             };
 
             // Act
-            var result = _validator.TestValidate(objectToTest: dto);
+            var result = _validator.TestValidate(dto);
 
             // Assert
             result.IsValid.Should().BeFalse();
-            result.Errors.FirstOrDefault(predicate: x => x.ErrorMessage == message).Should().NotBeNull();
-            result.Errors.Should().HaveCount(expected: 1);
+            result.Errors.FirstOrDefault(x => x.ErrorMessage == message).Should().NotBeNull();
+            result.Errors.Should().HaveCount(1);
         }
 
         [Fact]
@@ -102,7 +102,7 @@ namespace TodoApi.Tests.Unit.Validators
             };
 
             // Act
-            var result = _validator.TestValidate(objectToTest: dto);
+            var result = _validator.TestValidate(dto);
 
             // Assert
             result.IsValid.Should().BeFalse();
