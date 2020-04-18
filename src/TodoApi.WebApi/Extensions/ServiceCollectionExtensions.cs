@@ -55,7 +55,6 @@ namespace TodoApi.WebApi.Extensions
         ///     Adds HellangProblemDetails services to the specified <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
         /// </summary>
         /// <param name="services">The <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add services to.</param>
-        /// <param name="environment">Provides information about the web hosting environment an application is running in.</param>
         /// <exception cref="System.ArgumentNullException">
         ///    The services must not be null.
         /// </exception>
