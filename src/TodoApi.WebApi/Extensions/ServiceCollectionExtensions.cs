@@ -64,24 +64,20 @@ namespace TodoApi.WebApi.Extensions
             services.AddProblemDetails(configure: options =>
             {
                 // This is the default behavior; only include exception details in a development environment.
-                options.IncludeExceptionDetails = ctx => Environment.IsDevelopment();
+                options.IncludeExceptionDetails = (ctx, ex) => Environment.IsDevelopment();
 
                 // This will map NotImplementedException to the 404 Not Found status code.
-                options.Map<RecordNotFoundException>(mapping: ex =>
-                    new ExceptionProblemDetails(error: ex, statusCode: StatusCodes.Status404NotFound));
+                options.MapToStatusCode<RecordNotFoundException>(statusCode: StatusCodes.Status404NotFound);
 
                 // This will map NotImplementedException to the 501 Not Implemented status code.
-                options.Map<NotImplementedException>(mapping: ex =>
-                    new ExceptionProblemDetails(error: ex, statusCode: StatusCodes.Status501NotImplemented));
+                options.MapToStatusCode<NotImplementedException>(statusCode: StatusCodes.Status501NotImplemented);
 
                 // This will map HttpRequestException to the 503 Service Unavailable status code.
-                options.Map<HttpRequestException>(mapping: ex =>
-                    new ExceptionProblemDetails(error: ex, statusCode: StatusCodes.Status503ServiceUnavailable));
+                options.MapToStatusCode<HttpRequestException>(statusCode: StatusCodes.Status503ServiceUnavailable);
 
                 // Because exceptions are handled polymorphically, this will act as a "catch all" mapping, which is why it's added last.
                 // If an exception other than NotImplementedException and HttpRequestException is thrown, this will handle it.
-                options.Map<Exception>(mapping: ex =>
-                    new ExceptionProblemDetails(error: ex, statusCode: StatusCodes.Status500InternalServerError));
+                options.MapToStatusCode<Exception>(statusCode: StatusCodes.Status500InternalServerError);
             });
 
             return services;
