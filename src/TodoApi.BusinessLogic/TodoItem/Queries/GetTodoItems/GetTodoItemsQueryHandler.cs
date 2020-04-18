@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using TodoApi.Abstractions.Dto;
 using TodoApi.Abstractions.Dto.TodoItemDtos;
 using TodoApi.DataAccess;
 

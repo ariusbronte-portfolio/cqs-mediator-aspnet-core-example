@@ -16,28 +16,28 @@ namespace TodoApi.Tests.Unit.Validators
 
         public CreateTodoItemValidatorTests(ValidatorFixture<CreateTodoItemValidator> validator)
         {
-            _validator = validator?.Instance ?? throw new ArgumentNullException(nameof(validator));
+            _validator = validator?.Instance ?? throw new ArgumentNullException(paramName: nameof(validator));
         }
 
         [Fact]
         public void IsValidTests()
         {
-            _validator.TestValidate(new CreateTodoItemDto
+            _validator.TestValidate(objectToTest: new CreateTodoItemDto
             {
                 Title = "TodoItemName", Status = TodoTaskStatus.Open
             }).IsValid.Should().BeTrue();
 
-            _validator.TestValidate(new CreateTodoItemCommand
+            _validator.TestValidate(objectToTest: new CreateTodoItemCommand
             {
                 Title = "TodoItemName", Status = TodoTaskStatus.Deferred
             }).IsValid.Should().BeTrue();
             
-            _validator.TestValidate(new CreateTodoItemCommand
+            _validator.TestValidate(objectToTest: new CreateTodoItemCommand
             {
                 Title = "TodoItemName", Status = TodoTaskStatus.Open
             }).IsValid.Should().BeTrue();
             
-            _validator.TestValidate(new CreateTodoItemCommand
+            _validator.TestValidate(objectToTest: new CreateTodoItemCommand
             {
                 Title = "TodoItemName", Status = (TodoTaskStatus)1
             }).IsValid.Should().BeTrue();
@@ -54,12 +54,12 @@ namespace TodoApi.Tests.Unit.Validators
             };
             
             // Act
-            var result = _validator.TestValidate(dto);
+            var result = _validator.TestValidate(objectToTest: dto);
             
             // Assert
             result.IsValid.Should().BeFalse();
-            result.Errors.Single().ErrorMessage.Should().Be("'Title' must not be empty.");
-            result.Errors.Should().HaveCount(1);
+            result.Errors.Single().ErrorMessage.Should().Be(expected: "'Title' must not be empty.");
+            result.Errors.Should().HaveCount(expected: 1);
         }
 
         [Theory]
@@ -70,17 +70,17 @@ namespace TodoApi.Tests.Unit.Validators
             // Arrange
             var dto = new CreateTodoItemDto
             {
-                Title = new string('*', length),
+                Title = new string(c: '*', count: length),
                 Status = TodoTaskStatus.Open
             };
             
             // Act
-            var result = _validator.TestValidate(dto);
+            var result = _validator.TestValidate(objectToTest: dto);
             
             // Assert
             result.IsValid.Should().BeFalse();
-            result.Errors.FirstOrDefault(x => x.ErrorMessage == message).Should().NotBeNull();
-            result.Errors.Should().HaveCount(1);
+            result.Errors.FirstOrDefault(predicate: x => x.ErrorMessage == message).Should().NotBeNull();
+            result.Errors.Should().HaveCount(expected: 1);
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace TodoApi.Tests.Unit.Validators
             };
             
             // Act
-            var result = _validator.TestValidate(dto);
+            var result = _validator.TestValidate(objectToTest: dto);
             
             // Assert
             result.IsValid.Should().BeFalse();

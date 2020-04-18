@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Hosting;
 
 namespace TodoApi.WebApi.Extensions
@@ -57,7 +56,7 @@ namespace TodoApi.WebApi.Extensions
         /// </summary>
         public static string GetEnvironment()
         {
-            return System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            return System.Environment.GetEnvironmentVariable(variable: "ASPNETCORE_ENVIRONMENT");
         }
     }
 }

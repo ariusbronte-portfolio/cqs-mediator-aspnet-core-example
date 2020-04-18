@@ -11,7 +11,7 @@ namespace TodoApi.Tests.Unit.Extensions
         public void IsDevelopment()
         {
             // Arrange
-            SetEnvironmentVariable(Environments.Development);
+            SetEnvironmentVariable(value: Environments.Development);
 
             // Act
             var value = Environment.IsDevelopment();
@@ -24,7 +24,7 @@ namespace TodoApi.Tests.Unit.Extensions
         public void IsProduction()
         {
             // Arrange
-            SetEnvironmentVariable(Environments.Production);
+            SetEnvironmentVariable(value: Environments.Production);
 
             // Act
             var value = Environment.IsProduction();
@@ -37,7 +37,7 @@ namespace TodoApi.Tests.Unit.Extensions
         public void IsStaging()
         {
             // Arrange
-            SetEnvironmentVariable(Environments.Staging);
+            SetEnvironmentVariable(value: Environments.Staging);
 
             // Act
             var value = Environment.IsStaging();
@@ -48,7 +48,7 @@ namespace TodoApi.Tests.Unit.Extensions
 
         private static void SetEnvironmentVariable(string value)
         {
-            System.Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", value);
+            System.Environment.SetEnvironmentVariable(variable: "ASPNETCORE_ENVIRONMENT", value: value);
         }
     }
 }

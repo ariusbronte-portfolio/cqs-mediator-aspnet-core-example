@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,9 +26,9 @@ namespace TodoApi.WebApi
             
             // Used to build key/value based configuration settings for use in an application.
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{environment}.json", optional: true)
+                .SetBasePath(basePath: Directory.GetCurrentDirectory())
+                .AddJsonFile(path: "appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile(path: $"appsettings.{environment}.json", optional: true)
                 .AddCommandLine(args: args)
                 .Build();
 
@@ -65,7 +63,7 @@ namespace TodoApi.WebApi
         /// <returns>The <see cref="Microsoft.Extensions.Hosting.IHostBuilder"/> so that additional calls can be chained.</returns>
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args: args)
-                .ConfigureLogging(builder =>
+                .ConfigureLogging(configureLogging: builder =>
                 {
                     builder.ClearProviders();
                     builder.AddSerilog();

@@ -13,10 +13,10 @@ namespace TodoApi.Tests.Unit.Exceptions
             const long key = 1;
             
             // Arrange
-            var exception = new RecordNotFoundException(entity, key);
+            var exception = new RecordNotFoundException(entity: entity, key: key);
             
             // Assert
-            exception.Message.Should().Be($"Entity '{entity}' does not matter with the '{key}' key.");
+            exception.Message.Should().Be(expected: $"Entity '{entity}' does not matter with the '{key}' key.");
         }
     }
 }

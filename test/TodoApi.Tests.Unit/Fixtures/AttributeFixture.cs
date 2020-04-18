@@ -16,17 +16,17 @@ namespace TodoApi.Tests.Unit.Fixtures
 
         public void GetMethod(string method)
         {
-            _method = _type.GetMethod(method);
+            _method = _type.GetMethod(name: method);
         }
         
         public Attribute[] GetCustomAttributes()
         {
-            return Attribute.GetCustomAttributes(_method);
+            return Attribute.GetCustomAttributes(element: _method);
         }
 
         public Attribute[] GetTCustomAttributes()
         {
-            return Attribute.GetCustomAttributes(_type);
+            return Attribute.GetCustomAttributes(element: _type);
         }
     }
 }
