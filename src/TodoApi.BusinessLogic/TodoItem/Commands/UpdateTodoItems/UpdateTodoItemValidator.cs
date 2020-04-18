@@ -1,12 +1,12 @@
 using FluentValidation;
-using TodoApi.BusinessLogic.TodoItem.Commands.UpdateTodoItems;
+using TodoApi.Abstractions.Dto.TodoItemDtos;
 
-namespace TodoApi.WebApi.Validators.TodoItemValidators
+namespace TodoApi.BusinessLogic.TodoItem.Commands.UpdateTodoItems
 {
     /// <summary>
-    ///     Validator for <see cref="UpdateTodoItemCommand"/>.
+    ///     Validator for <see cref="TodoApi.BusinessLogic.TodoItem.Commands.UpdateTodoItems.UpdateTodoItemCommand"/>.
     /// </summary>
-    public class UpdateTodoItemValidator : AbstractValidator<UpdateTodoItemCommand>
+    public class UpdateTodoItemValidator : AbstractValidator<UpdateTodoItemDto>
     {
         /// <summary>
         ///     Initializes a new instance of the <see cref="UpdateTodoItemValidator"/> class.

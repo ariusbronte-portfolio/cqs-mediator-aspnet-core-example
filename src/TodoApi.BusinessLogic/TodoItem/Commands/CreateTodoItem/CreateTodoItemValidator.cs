@@ -1,7 +1,7 @@
 using FluentValidation;
 using TodoApi.Abstractions.Dto.TodoItemDtos;
 
-namespace TodoApi.WebApi.Validators.TodoItemValidators
+namespace TodoApi.BusinessLogic.TodoItem.Commands.CreateTodoItem
 {
     /// <summary>
     ///     Validator for <see cref="TodoApi.BusinessLogic.TodoItem.Commands.CreateTodoItem.CreateTodoItemCommand"/>.
@@ -9,7 +9,7 @@ namespace TodoApi.WebApi.Validators.TodoItemValidators
     public class CreateTodoItemValidator : AbstractValidator<CreateTodoItemDto>
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="TodoApi.WebApi.Validators.TodoItemValidators.CreateTodoItemValidator"/> class.
+        ///     Initializes a new instance of the <see cref="CreateTodoItemValidator"/> class.
         /// </summary>
         public CreateTodoItemValidator()
         {

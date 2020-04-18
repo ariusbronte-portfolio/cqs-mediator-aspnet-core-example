@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using TodoApi.WebApi.Validators.TodoItemValidators;
+using TodoApi.BusinessLogic.TodoItem.Commands.CreateTodoItem;
 
 namespace TodoApi.WebApi.Extensions
 {
