@@ -1,5 +1,4 @@
 # cqs-mediator-aspnet-core-example
-an example implementation of the application layer for microservices.
 
 ## What is it?
 this is a demo project of the application layer for microservices.
